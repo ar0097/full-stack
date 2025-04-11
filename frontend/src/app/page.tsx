@@ -34,6 +34,9 @@ export default function Home() {
   };
 
   const addJob = async () => {
+    if (!BACKEND_URL) {
+      throw new Error("Missing NEXT_PUBLIC_API_URL environment variable");
+    }
     await fetch(BACKEND_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -55,6 +58,9 @@ export default function Home() {
   };
 
   const updateStatus = async (id: string, status: string) => {
+    if (!BACKEND_URL) {
+      throw new Error("Missing NEXT_PUBLIC_API_URL environment variable");
+    }
     await fetch(`${BACKEND_URL}/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
