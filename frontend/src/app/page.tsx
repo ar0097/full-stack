@@ -23,7 +23,7 @@ export default function Home() {
 
   const [filter, setFilter] = useState("");
 
-  const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL;
+  const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL as string;
 
   const fetchJobs = async () => {
     const res = await fetch(
@@ -34,9 +34,6 @@ export default function Home() {
   };
 
   const addJob = async () => {
-    if (!BACKEND_URL) {
-      throw new Error("Missing NEXT_PUBLIC_API_URL environment variable");
-    }
     await fetch(BACKEND_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -58,9 +55,6 @@ export default function Home() {
   };
 
   const updateStatus = async (id: string, status: string) => {
-    if (!BACKEND_URL) {
-      throw new Error("Missing NEXT_PUBLIC_API_URL environment variable");
-    }
     await fetch(`${BACKEND_URL}/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
