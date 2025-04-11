@@ -23,7 +23,7 @@ export default function Home() {
 
   const [filter, setFilter] = useState("");
 
-  const BACKEND_URL = "https://full-stack-6kry.onrender.com/api/jobs";
+  const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const fetchJobs = async () => {
     const res = await fetch(
